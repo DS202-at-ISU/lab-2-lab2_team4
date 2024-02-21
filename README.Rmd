@@ -9,6 +9,11 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r setup, include=FALSE}
+library(classdata)
+data("ames")
+?ames
+```
 # Lab report #1
 
 Follow the instructions posted at https://ds202-at-isu.github.io/labs.html for the lab assignment. The work is meant to be finished during the lab time, but you have time until Monday evening to polish things.
@@ -43,5 +48,29 @@ ggplot(ames, aes(x = `Sale Price`)) +
   geom_histogram(binwidth = 100000, fill = "skyblue", color = "black") +
   labs(title = "Histogram of Sale Prices", x = "Sale Price", y = "Frequency") +
   theme_minimal()
+```
+
+```{r}
+# Range for `Year Built`
+ggplot(ames, aes(x = `YearBuilt`)) +
+  geom_histogram(binwidth = 10, fill = "blue", alpha = 0.3, color = "black") + 
+  scale_x_continuous(name = "Year Built") +
+  theme_minimal() +
+  xlim(1850, 2024)
+# The range for Year Built is between 1880 and 2022, with some homes having an NA value.
+# This histogram is skewed left, meaning more homes were built recently.
+
+# Relationship to main variable
+ggplot(ames,
+       aes(x = YearBuilt,
+           y = `Sale Price`,
+           color = "blue", alpha = 0.3)) +
+  geom_point() +
+  xlim(1850, 2024)
+
+# From the looks of it, regardless of the year the house was built, the sale price
+# seems to be about the same, so there isn't much of a relationship between year built and
+# sale price. There are about 5-6 outliers whose prices are much higher than the other      
+# homes. These outliers were all built around the year 2000 or after.
 ```
 
