@@ -16,3 +16,10 @@ All submissions to the github repo will be automatically uploaded for
 grading once the due date is passed. Submit a link to your repository on
 Canvas (only one submission per team) to signal to the instructors that
 you are done with your submission.
+
+1. There are the following 16 variables: Parcel ID, Address, Style, Occupancy, Sale Date, Sale Price, Multi Sale, YearBuilt, Acres
+, TotalLivingArea, Bedrooms, FinishedBsmtArea (sf), LotArea(sf), AC, FirePlace, and Neighborhood. After running "?ames" we were able to
+get a description of each variable. We are anticipating that numerically price will be in the thousands, or hundreds of thousands,
+addresses within Ames zipcodes (shouldn't be too many options), year can range from the first house built in ames (~200 years prior)
+until 2024, bedrooms will be a single digit value, some are boolean variables (fireplace, finished basement, ac), lot area will be
+measured in acres and will be in the hundreds or more. 
