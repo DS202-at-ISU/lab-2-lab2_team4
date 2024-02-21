@@ -32,5 +32,20 @@ measured in acres and will be in the hundreds or more.
 
 ```{r}
 library(classdata)
-data(Ames)
+data(ames)
+
 ?(ames)
+```
+
+
+```{r}
+library(ggplot2)
+
+ames$`Sale Price` <- as.numeric(as.character(ames$`Sale Price`))
+
+ggplot(ames, aes(x = `Sale Price`)) +
+  geom_histogram(binwidth = 100000, fill = "skyblue", color = "black") +
+  labs(title = "Histogram of Sale Prices", x = "Sale Price", y = "Frequency") +
+  theme_minimal()
+```
+
