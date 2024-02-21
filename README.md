@@ -22,4 +22,7 @@ you are done with your submission.
 get a description of each variable. We are anticipating that numerically price will be in the thousands, or hundreds of thousands,
 addresses within Ames zipcodes (shouldn't be too many options), year can range from the first house built in ames (~200 years prior)
 until 2024, bedrooms will be a single digit value, some are boolean variables (fireplace, finished basement, ac), lot area will be
-measured in acres and will be in the hundreds or more. 
+measured in acres and will be in the hundreds or more.
+
+2. The variable of interest for our group is "Price". 
+
