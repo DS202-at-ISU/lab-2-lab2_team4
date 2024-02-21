@@ -63,9 +63,9 @@ ggplot(ames, aes(x = `YearBuilt`)) +
 # Relationship to main variable
 ggplot(ames,
        aes(x = YearBuilt,
-           y = `Sale Price`,
-           color = "blue", alpha = 0.3)) +
-  geom_point() +
+           y = `Sale Price`
+           )) +
+  geom_point(color = "blue", alpha = 0.3) +
   xlim(1850, 2024)
 
 # From the looks of it, regardless of the year the house was built, the sale price
