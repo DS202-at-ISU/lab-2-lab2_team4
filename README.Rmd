@@ -7,13 +7,37 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(classdata)
+data("ames")
+?ames
+head(ames)
 ```
 
+<<<<<<< Updated upstream
 ```{r setup, include=FALSE}
 library(classdata)
 data("ames")
 ?ames
 ```
+=======
+```{r}
+ggplot(data = ames, aes(x = `Sale Price`)) +
+  geom_histogram(binwidth = 100000, color = "black") +
+  labs(title = "Histogram of Sale Price",
+       x = "Sale Price",
+       y = "Frequency")
+
+ggplot(data = ames, aes(x = `Sale Price`, y = `LotArea(sf)`)) +
+  geom_point(color = "blue", size = 3, alpha = 0.8) +  # Customize point appearance
+  scale_x_log10() +  # Use log scale for x-axis (Sale Price)
+  scale_y_continuous(labels = scales::comma, breaks = scales::pretty_breaks()) +  # Format y-axis labels
+  theme_minimal() +  # Minimal theme
+  labs(x = "Sale Price", y = "Lot Area", title = "Scatter Plot of Sale Price vs Lot Area")  # Axis labels and title
+```
+
+
+>>>>>>> Stashed changes
 # Lab report #1
 
 Follow the instructions posted at https://ds202-at-isu.github.io/labs.html for the lab assignment. The work is meant to be finished during the lab time, but you have time until Monday evening to polish things.
