@@ -1,14 +1,7 @@
----
-output: github_document
----
-
-<!-- README.md is generated from README.Rmd. Please edit the README.Rmd file -->
 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
+>>>>>>> Stashed changes
 # Lab report #1
 
 Follow the instructions posted at https://ds202-at-isu.github.io/labs.html for the lab assignment. The work is meant to be finished during the lab time, but you have time until Monday evening to polish things.
@@ -24,13 +17,113 @@ get a description of each variable. We are anticipating that numerically price w
 addresses within Ames zipcodes (shouldn't be too many options), year can range from the first house built in ames (~200 years prior)
 until 2024, bedrooms will be a single digit value, some are boolean variables (fireplace, finished basement, ac), lot area will be
 measured in acres and will be in the hundreds or more. 
+```{r}
+library(classdata)
+data(ames)
+
+?(ames)
+```
 
 2. The variable of interest for our group is "Price". 
 
-3. 
+3. The histogram below shows that there most of the houses in Ames are within a relatively similar price range. However, there are a few outliers, two of which are above the 10 million dollar mark.
 
+4. We did not notice we that the variable of focus for the next slide was going to be "Sale Price" as we focused on that for the slide before. So, our steps 1-3 would be repetitive, but we did include an extra variable to compare it with.
 
 ```{r}
+library(ggplot2)
+
+ames$`Sale Price` <- as.numeric(as.character(ames$`Sale Price`))
+
+ggplot(ames, aes(x = `Sale Price`)) +
+  geom_histogram(binwidth = 100000, fill = "skyblue", color = "black") +
+  labs(title = "Histogram of Sale Prices", x = "Sale Price", y = "Frequency") +
+  theme_minimal()
+```
+
+```{r}
+# Range for `Year Built`
+ggplot(ames, aes(x = `YearBuilt`)) +
+  geom_histogram(binwidth = 10, fill = "blue", alpha = 0.3, color = "black") + 
+  scale_x_continuous(name = "Year Built") +
+  theme_minimal() +
+  xlim(1850, 2024)
+# The range for Year Built is between 1880 and 2022, with some homes having an NA value.
+# This histogram is skewed left, meaning more homes were built recently.
+
+# Relationship to main variable
+ggplot(ames,
+       aes(x = YearBuilt,
+           y = `Sale Price`
+           )) +
+  geom_point(color = "blue", alpha = 0.3) +
+  xlim(1850, 2024)
+
+# From the looks of it, regardless of the year the house was built, the sale price
+# seems to be about the same, so there isn't much of a relationship between year built and
+# sale price. There are about 5-6 outliers whose prices are much higher than the other      
+# homes. These outliers were all built around the year 2000 or after.
+```
+
+```{r}
+# Range for `Acre`
+ggplot(ames, aes(x = Acres)) +
+  geom_histogram(binwidth = 1, fill = "blue", alpha = 0.3, color = "black") + 
+  scale_x_continuous(name = "Acres") +
+  theme_minimal() +
+  xlim(0, 20) +
+  ylim(0, 25)
+# The range for Acres is between 2.5 and 12.5. It is right skewed as there is an outlier within the 12.5 area.
+
+# Relationship to main variable
+ggplot(ames,
+       aes(x = Acres,
+           y = `Sale Price`,
+           color = "blue", alpha = 0.3)) +
+  geom_point() +
+  xlim(0, 20)
+
+# A majority of the points are in the bottom left corner, meaning they're all about the same price when the acrage is 5 or less. There are two dots at the top, both outliers, whose prices are much higher than the majority even though the acrage is less than 5. There are also two dots past 5 acres, also outliers, but their price is about the same as the majority of the houses. There isn't too much of a relationship between Acres and Sale Price due to the cluster in the bottom left corner. 
+```
+
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit the README.Rmd file -->
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
 library(classdata)
-data(Ames)
-?(ames)
+data("ames")
+?ames
+head(ames)
+```
+
+<<<<<<< Updated upstream
+```{r setup, include=FALSE}
+library(classdata)
+data("ames")
+?ames
+```
+=======
+```{r}
+ggplot(data = ames, aes(x = `Sale Price`)) +
+  geom_histogram(binwidth = 100000, color = "black") +
+  labs(title = "Histogram of Sale Price",
+       x = "Sale Price",
+       y = "Frequency")
+
+ggplot(data = ames, aes(x = `Sale Price`, y = `LotArea(sf)`)) +
+  geom_point(color = "blue", size = 3, alpha = 0.8) +  # Customize point appearance
+  scale_x_log10() +  # Use log scale for x-axis (Sale Price)
+  scale_y_continuous(labels = scales::comma, breaks = scales::pretty_breaks()) +  # Format y-axis labels
+  theme_minimal() +  # Minimal theme
+  labs(x = "Sale Price", y = "Lot Area", title = "Scatter Plot of Sale Price vs Lot Area")  # Axis labels and title
+
+Most of the dots are in the bottom left, this signifies that houses with smaller lot area, are generally cheaper. There are a few outliers though around the bottom right side, meaning that their price is high, but they still dont have a lot of lot area.
+```
+
+
