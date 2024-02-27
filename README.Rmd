@@ -1,40 +1,4 @@
----
-output: github_document
----
 
-<!-- README.md is generated from README.Rmd. Please edit the README.Rmd file -->
-
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(ggplot2)
-library(classdata)
-data("ames")
-?ames
-head(ames)
-```
-
-<<<<<<< Updated upstream
-```{r setup, include=FALSE}
-library(classdata)
-data("ames")
-?ames
-```
-=======
-```{r}
-ggplot(data = ames, aes(x = `Sale Price`)) +
-  geom_histogram(binwidth = 100000, color = "black") +
-  labs(title = "Histogram of Sale Price",
-       x = "Sale Price",
-       y = "Frequency")
-
-ggplot(data = ames, aes(x = `Sale Price`, y = `LotArea(sf)`)) +
-  geom_point(color = "blue", size = 3, alpha = 0.8) +  # Customize point appearance
-  scale_x_log10() +  # Use log scale for x-axis (Sale Price)
-  scale_y_continuous(labels = scales::comma, breaks = scales::pretty_breaks()) +  # Format y-axis labels
-  theme_minimal() +  # Minimal theme
-  labs(x = "Sale Price", y = "Lot Area", title = "Scatter Plot of Sale Price vs Lot Area")  # Axis labels and title
-```
 
 
 >>>>>>> Stashed changes
@@ -120,6 +84,46 @@ ggplot(ames,
   xlim(0, 20)
 
 # A majority of the points are in the bottom left corner, meaning they're all about the same price when the acrage is 5 or less. There are two dots at the top, both outliers, whose prices are much higher than the majority even though the acrage is less than 5. There are also two dots past 5 acres, also outliers, but their price is about the same as the majority of the houses. There isn't too much of a relationship between Acres and Sale Price due to the cluster in the bottom left corner. 
+```
+
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit the README.Rmd file -->
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(classdata)
+data("ames")
+?ames
+head(ames)
+```
+
+<<<<<<< Updated upstream
+```{r setup, include=FALSE}
+library(classdata)
+data("ames")
+?ames
+```
+=======
+```{r}
+ggplot(data = ames, aes(x = `Sale Price`)) +
+  geom_histogram(binwidth = 100000, color = "black") +
+  labs(title = "Histogram of Sale Price",
+       x = "Sale Price",
+       y = "Frequency")
+
+ggplot(data = ames, aes(x = `Sale Price`, y = `LotArea(sf)`)) +
+  geom_point(color = "blue", size = 3, alpha = 0.8) +  # Customize point appearance
+  scale_x_log10() +  # Use log scale for x-axis (Sale Price)
+  scale_y_continuous(labels = scales::comma, breaks = scales::pretty_breaks()) +  # Format y-axis labels
+  theme_minimal() +  # Minimal theme
+  labs(x = "Sale Price", y = "Lot Area", title = "Scatter Plot of Sale Price vs Lot Area")  # Axis labels and title
+
+Most of the dots are in the bottom left, this signifies that houses with smaller lot area, are generally cheaper. There are a few outliers though around the bottom right side, meaning that their price is high, but they still dont have a lot of lot area.
 ```
 
 
