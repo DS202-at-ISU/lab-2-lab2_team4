@@ -27,6 +27,9 @@ data(ames)
 2. The variable of interest for our group is "Price". 
 
 3. The histogram below shows that there most of the houses in Ames are within a relatively similar price range. However, there are a few outliers, two of which are above the 10 million dollar mark.
+```{r}
+
+```
 
 4. We did not notice we that the variable of focus for the next slide was going to be "Sale Price" as we focused on that for the slide before. So, our steps 1-3 would be repetitive, but we did include an extra variable to compare it with.
 
@@ -123,7 +126,44 @@ ggplot(data = ames, aes(x = `Sale Price`, y = `LotArea(sf)`)) +
   theme_minimal() +  # Minimal theme
   labs(x = "Sale Price", y = "Lot Area", title = "Scatter Plot of Sale Price vs Lot Area")  # Axis labels and title
 
-Most of the dots are in the bottom left, this signifies that houses with smaller lot area, are generally cheaper. There are a few outliers though around the bottom right side, meaning that their price is high, but they still dont have a lot of lot area.
+#Most of the dots are in the bottom left, this signifies that houses with smaller lot area, are generally 
+#cheaper. There are a few outliers though around the bottom right side, meaning that their price is high,
+#but they still dont have a lot of lot area.
 ```
+```{r}
+#Range for occupancy 
+ggplot(ames, aes(x = `Occupancy`)) +
+  geom_histogram(binwidth = 1, stat = "count")
+
+#Linear plot
+ggplot(ames, aes(x = Occupancy, y = `Sale Price`)) +
+  geom_point() +
+  labs(x = "Occupancy", y = "Sale Price") +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_minimal()
+
+#Log plot
+
+ggplot(ames, aes(x = Occupancy, y = `Sale Price`)) +
+  geom_point() +
+  labs(x = "Occupancy", y = "Sale Price (log scale)") +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_minimal() +
+  scale_y_continuous(trans = "log10") 
+#Log scale for y variable makes data much clearer (compared to linear)
+
+```
+The range for Occupancy is Condominium, Single Family, Townhouse, Two-Family, Two-Family Duplex, and NA
+I assumed that sale price would have a correlation with these variables as they have an impact on size and 
+living style of each home. There were significantly more Single Family/Owner Occupied homes (~ 4700) 
+than any other type of homes in Ames, the next most common being condominiums and Townhomes (~700 each). 
+When formatting a scatterplot, using a linear pattern for sale price showed that there were similar 
+pricings for different types of homes with two extreme outliers for Condominiums that had a much higher 
+sale price comparitively. After changing sale price to a log scale, the ranges of sale price was much more
+evident. The same two outliers with extremely high sale prices are obvious on this scatterplot too, with 
+some added lower scale outliers for almost every type of home. The largest range of sale price being NA 
+(to be expected), lowest range being Two-Family Duplex, the highest prices being Condominiums, and lowest 
+is sort of unclear with the scatterplot. These are all important relationship characteristic connecting 
+Occupancy type to sale price. 
 
 
